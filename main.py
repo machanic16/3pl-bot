@@ -37,23 +37,18 @@ class telegram_chatbot():
         self.keyboards['options'].row('🚚Destinos servidos🚛')
         self.keyboards['options'].row('Informacion')
 
-        # Add buttons to the keyboar 'info'
+        # Add buttons to the keyboard 'info'
         self.keyboards['info'].row('Direcciones')
         self.keyboards['info'].row('¿Donde esta mi envio?')
         self.keyboards['info'].row('Contacto')
         self.keyboards['info'].row('menu principal')
 
 
-        # Add buttons to the keyboar 'cities'
+        # Add buttons to the keyboard 'cities'
         self.keyboards['cities'].row('🏦Atlanta🏦')
         self.keyboards['cities'].row('🐊Orlando🐊')
         self.keyboards['cities'].row('🌴Miami🌴')
         self.keyboards['cities'].row('menu principal')
-
-        self.options = types.ReplyKeyboardMarkup() 
-        self.options.row('Precios 💰')
-        self.options.row('🚚Destinos servidos🚛')
-        self.options.row('Contacto')
 
         # Commads dictionary
         self.commands ={
