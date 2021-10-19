@@ -1,13 +1,8 @@
 from main import telegram_chatbot
 import pdb
+
+
 main = telegram_chatbot("config.cfg")
-
-
-def make_reply(msg):
-    reply = None
-    if msg is not None:
-        reply = 'okay'
-    return reply
 
 update_id = None
 updates = main.get_updates(offset=update_id)
@@ -33,18 +28,9 @@ while True:
                 from_ = item["message"]["from"]["id"]
             except:
                 from_ = item["edited_message"]["from"]["id"]
-            if message == 'Precios 💰':
-                main.precios_button_handler(from_)
-                break
-            elif message == 'menu principal':
-                main.menu_button_handler(from_, 'En su teclado encontrara las opciones', 'options')
-            elif message == '🚚Destinos servidos🚛':
-                main.send_cities_to_serve(from_)
-            elif message == '🏦Atlanta🏦':
-                msg = main.prices['Atlanta prices']
-                main.atlanta_handler( msg,from_)
-                pass
-            elif message == 'Contacto':
-                main.send_contact_info(from_)
-            if message.lower().capitalize() == 'Opciones':
-                main.send_reply_keyboard_markup(from_, 'En su teclado encontrara las opciones', 'options')
+
+            try:
+                main.handler_message(from_, message)
+            except KeyError:
+                main.send_message(from_, main.comand_error)
+                main.handler_message(from_, 'optiones')
