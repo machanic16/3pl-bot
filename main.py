@@ -17,7 +17,7 @@ markup.row('c', 'd', 'e')
 tb.send_message(chat_id, message, reply_markup=markup) """
 
 
-class telegram_chatbot():
+class Telegram_chatbot():
 
     def __init__(self, config):
         self.token = self.read_token_from_config_file(config)
@@ -95,7 +95,12 @@ class telegram_chatbot():
         if offset:
             url = url + "&offset={}".format(offset + 1)
         r = requests.get(url)
-        return json.loads(r.content)
+        respuesta = json.loads(r.content)
+        if respuesta["ok"] != True:
+            print( f"{respuesta} Telegram se jodio")
+        else:
+            print(f'La respuesta es: {respuesta}')
+            return respuesta
 
     def handler_message(self, chat_id, command):
         self.commands[command](chat_id)
